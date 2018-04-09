@@ -1,0 +1,27 @@
+{
+  "name": "cah",
+  "version": "0.1.0",
+  "description": "Cards against humanity",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/feinwarusoftware/cah.git"
+  },
+  "author": "Dragon1320",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/feinwarusoftware/cah/issues"
+  },
+  "homepage": "https://github.com/feinwarusoftware/cah#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "hbs": "^4.0.1",
+    "morgan": "^1.9.0",
+    "node-sass-middleware": "^0.11.0",
+    "serve-favicon": "^2.5.0"
+  }
+}
