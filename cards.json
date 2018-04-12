@@ -1,0 +1,12 @@
+{
+    "black": [
+        {
+            "text": "Test black card."
+        }
+    ],
+    "white": [
+        {
+            "text": "Test white card."
+        }
+    ]
+}

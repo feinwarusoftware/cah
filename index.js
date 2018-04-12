@@ -7,7 +7,9 @@ const logger = require("morgan");
 const bodyParser = require("body-parser");
 const sassMiddleware = require("node-sass-middleware");
 const http = require("http");
-const hbs = require("hbs");
+const exphbs = require("express-handlebars");
+const ejs = require("ejs");
+const session = require("express-session")
 
 const routes = require("./routes");
 
@@ -18,12 +20,23 @@ const port = process.env.PORT || "80";
 
 app.use(logger("dev"));
 app.set("views", path.join(__dirname, "templates"));
-app.set("view engine", "hbs");
+app.set("view engine", "ejs");
+
+app.use(session({
+	secret: "keyboard cat",
+	resave: false,
+	saveUninitialized: false,
+	cookie: {
+		secure: false
+	}
+}));
+
 app.use(favicon(path.join(__dirname, "static", "favicon.ico")));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
 	extended: false
 }));
+
 app.use(sassMiddleware({
 	root: path.join(__dirname, "static"),
 	src: "/scss",
@@ -76,14 +89,14 @@ server.on("error", (err) => {
 });
 
 server.on("listening", () => {
-    /*
+	/*
 	let addr = server.address();
 	let bind = typeof addr === "string" ?
 		"pipe " + addr :
 		"port " + addr.port;
     debug("Listening on " + bind);
     */
-    console.log("Magic happens on port: " + port);
+	console.log("Magic happens on port: " + port);
 });
 //
 
