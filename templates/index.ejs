@@ -3,19 +3,68 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="theme-color" content="#f54437">
+    <meta name="theme-color" content="#111111">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>live.awesomobot.com</title>
+    <title>Cards Against Humanity // Feinwaru</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/mdb.min.css">
     <link rel="stylesheet" href="../../css/style.css">
+
+    <style>
+    .hiddenbutton {
+        display: none;
+    }
+    </style>
+
 </head>
 
 <body>
+    <div class="container">
+        <img id="logo" src="../../img/logo_light.png" class="img-fluid" alt="Responsive image">
+        <div class="row justify-content-center">
+            <div class="col-8">
+
+                <!-- Material form row -->
+                <form>
+                    <!-- Grid row -->
+                    <div class="form-row">
+                        <!-- Grid column -->
+                        <div class="col">
+                            <!-- Material input -->
+                            <div class="md-form">
+                                <input type="text" class="form-control" placeholder="Username">
+                            </div>
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col">
+                            <!-- Material input -->
+                            <div class="md-form">
+                                <input type="text" class="form-control" placeholder="Room Number">
+                            </div>
+                        </div>
+                        <!-- Grid column -->
+                    </div>
+                    <div class="form-row">
+                        <button type="submit" id="room-enter" class="btn btn-black btn-lg mx-auto">Join Room</button>
+                    </div>
+                    <!-- Grid row -->
+                </form>
+                <!-- Material form row -->
+            </div>
+        </div>
+    </div>
+    <div style="position: fixed; bottom: 20px; right: 20px;">
+        <button type="button" class="btn btn-red hiddenbutton" id="crab-dark">Dark Crab</button>
+        <button type="button" class="btn btn-danger hiddenbutton" id="crab-light">Light Crab</button>
+        <button type="button" class="btn btn-black" id="dark">Dark Theme</button>
+        <button type="button" class="btn btn-blue-grey" id="light">Light Theme</button>
+    </div>
 
     <script type="text/javascript" src="../../js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="../../js/popper.min.js"></script>
@@ -24,7 +73,69 @@
     <script>
         new WOW().init();
     </script>
+    <!-- Light Theme Toggle-->
+    <script>
+        $(document).ready(function () {
+            $("#dark").click(function () {
+                $("body").css("background-color", "#111");
+                $('#room-enter').attr('class', 'btn btn-blue-grey btn-lg mx-auto');
+                $('#logo').attr('src', '../../img/logo_dark.png');
+            });
+            $("#light").click(function () {
+                $("body").css("background-color", "#fff");
+                $('#room-enter').attr('class', 'btn btn-black btn-lg mx-auto');
+                $('#logo').attr('src', '../../img/logo_light.png');
+            });
+            $("#crab-dark").click(function () {
+                $("body").css("background-color", "#ac0000");
+                $('#logo').attr('src', '../../img/logo_crab.png');
+                $('#room-enter').attr('class', 'btn btn-red btn-lg mx-auto');
+                $("*").css("font-family", "Comic Sans MS");
+            });
+            $("#crab-light").click(function () {
+                $("body").css("background-color", "#eab8b8");
+                $('#logo').attr('src', '../../img/logo_crab_light.png');
+                $('#room-enter').attr('class', 'btn btn-red btn-lg mx-auto');
+                $("*").css("font-family", "Comic Sans MS");
+                $("*").css("color", "black");
+            });
+        });
+        var keyCodes = [],
+            konamiString = "38,38,40,40,37,39,37,39,66,65";
+        $(document).keydown(function (e) {
+            keyCodes.push(e.keyCode);
+            if (keyCodes.toString().indexOf(konamiString) >= 0) {
+                $(document).unbind('keydown', arguments.callee);
 
+                $("body").css("background-color", "#ac0000");
+                $('#logo').attr('src', '../../img/logo_crab.png');
+                $('#room-enter').attr('class', 'btn btn-red btn-lg mx-auto');
+                $("*").css("font-family", "Comic Sans MS");
+                $("#crab-dark").show();
+                $("#crab-light").show();
+                $("#dark").hide();                
+                $("#light").hide();
+            }
+        });
+
+        var bwkeyCodes = [],
+            bwkonamiString = "65,66,39,37,39,37,40,40,38,38";
+        $(document).keydown(function (e) {
+            bwkeyCodes.push(e.keyCode);
+            if (bwkeyCodes.toString().indexOf(bwkonamiString) >= 0) {
+                $(document).unbind('keydown', arguments.callee);
+
+                $("body").css("background-color", "#111111");
+                $('#logo').attr('src', '../../img/logo_dark.png');
+                $('#room-enter').attr('class', 'btn btn-blue-grey btn-lg mx-auto');
+                $("*").css("font-family", "Roboto");
+                $("#crab-dark").hide();
+                $("#crab-light").hide();
+                $("#dark").show();                
+                $("#light").show();
+            }
+        });
+    </script>
 </body>
 
 </html>
